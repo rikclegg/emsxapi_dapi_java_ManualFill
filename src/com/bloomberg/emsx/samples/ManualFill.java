@@ -157,25 +157,29 @@ public class ManualFill {
 
                     Element routeToFill = request.getElement("ROUTE_TO_FILL");
                     
-                    routeToFill.setElement("EMSX_SEQUENCE", 3852518);
+                    routeToFill.setElement("EMSX_SEQUENCE", 3992180);
                     routeToFill.setElement("EMSX_ROUTE_ID", 1);
                     
                     Element fills = request.getElement("FILLS");
                     
-                    fills.setElement("EMSX_FILL_AMOUNT", 500);
-                    fills.setElement("EMSX_FILL_PRICE", 127.5);
-                    fills.setElement("EMSX_LAST_MARKET", "XLON");
+                    Element fill = fills.appendElement();
+                    
+                    fill.setElement("EMSX_FILL_AMOUNT", 500);
+                    fill.setElement("EMSX_FILL_PRICE", 127.5);
+                    fill.setElement("EMSX_LAST_MARKET", "XLON");
                     
                     // Only needed for Indian exchanges
                     //fills.setElement("EMSX_INDIA_EXCHANGE","BGL");
                     
-                    Element fillDateTime = fills.getElement("EMSX_FILL_DATE_TIME");
+                    Element fillDateTime = fill.getElement("EMSX_FILL_DATE_TIME");
                     
                     fillDateTime.setChoice("Legacy");
                     
-                    fillDateTime.setElement("EMSX_FILL_DATE",20171004);
-                    fillDateTime.setElement("EMSX_FILL_TIME",17054);
-                    fillDateTime.setElement("EMSX_FILL_TIME_FORMAT","SecondsFromMidnight");
+                    Element legacy = fillDateTime.getElement("Legacy");
+
+                    legacy.setElement("EMSX_FILL_DATE",20171004);
+                    legacy.setElement("EMSX_FILL_TIME",17054);
+                    legacy.setElement("EMSX_FILL_TIME_FORMAT","SecondsFromMidnight");
 
                     // If performing the fill on an order owned by another team member, provide owner's UUID
                     //request.set("EMSX_TRADER_UUID", 12109783);
